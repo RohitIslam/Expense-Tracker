@@ -12,8 +12,9 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: ListView(
-        children: transactions.map((trans) {
+      child: ListView.builder(
+        itemBuilder: (buildContext, index) {
+          // buildContext argument will be passed autamically by flutter
           return Card(
             child: Row(
               children: <Widget>[
@@ -31,7 +32,7 @@ class TransactionList extends StatelessWidget {
                   // width: 100,
                   padding: EdgeInsets.all(10),
                   child: Text(
-                    '${trans.amount} tk',
+                    '${transactions[index].amount} tk',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class TransactionList extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.all(5),
                       child: Text(
-                        trans.title,
+                        transactions[index].title,
                         style: TextStyle(
                           color: Colors.blueAccent,
                           fontWeight: FontWeight.bold,
@@ -57,7 +58,9 @@ class TransactionList extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.all(5),
                       child: Text(
-                        DateFormat.yMMMEd().add_jm().format(trans.date),
+                        DateFormat.yMMMEd()
+                            .add_jm()
+                            .format(transactions[index].date),
                         style: TextStyle(
                           color: Colors.blueGrey,
                           fontSize: 16,
@@ -69,7 +72,9 @@ class TransactionList extends StatelessWidget {
               ],
             ),
           );
-        }).toList(),
+        },
+        itemCount: transactions
+            .length, // 'itemBuilder' function will run 'itemCount' times
       ),
     );
   }
