@@ -10,64 +10,67 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transactions.map((trans) {
-        return Card(
-          child: Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 15,
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.purple,
+    return Container(
+      height: 300,
+      child: ListView(
+        children: transactions.map((trans) {
+          return Card(
+            child: Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
                   ),
-                ),
-                // width: 100,
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  '${trans.amount} tk',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.purple,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: Text(
-                      trans.title,
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.purple,
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.all(5),
-                    child: Text(
-                      DateFormat.yMMMEd().add_jm().format(trans.date),
-                      style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontSize: 16,
+                  // width: 100,
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    '${trans.amount} tk',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      child: Text(
+                        trans.title,
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      }).toList(),
+                    Container(
+                      margin: EdgeInsets.all(5),
+                      child: Text(
+                        DateFormat.yMMMEd().add_jm().format(trans.date),
+                        style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ),
     );
   }
 }
