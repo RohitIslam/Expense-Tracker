@@ -11,7 +11,7 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 400,
       child: ListView.builder(
         itemBuilder: (buildContext, index) {
           // buildContext argument will be passed autamically by flutter
