@@ -47,20 +47,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: '1',
-    //   title: 'Bag',
-    //   amount: 100,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: '2',
-    //   title: 'Shoe',
-    //   amount: 500,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  final List<Transaction> _userTransactions = [];
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((userTrans) {
@@ -73,7 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _addNewTransaction(
-      String transTitle, double transAmount, DateTime chosenDate) {
+    String transTitle,
+    double transAmount,
+    DateTime chosenDate,
+  ) {
     final newTrans = Transaction(
       id: DateTime.now().toString(),
       title: transTitle,
@@ -81,8 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
       date: chosenDate,
     );
 
+    print('newTrans Id: ${newTrans.id}');
     setState(() {
       _userTransactions.add(newTrans);
+    });
+  }
+
+  void _deleteTransaction(String id) {
+    print('deleted Id: ${id}');
+    setState(() {
+      _userTransactions.removeWhere((userTrans) => userTrans.id == id);
     });
   }
 
@@ -116,8 +114,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            Chart(
+              _recentTransactions,
+            ),
+            TransactionList(
+              _userTransactions,
+              _deleteTransaction,
+            ),
           ],
         ),
       ),
