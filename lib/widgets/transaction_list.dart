@@ -35,56 +35,29 @@ class TransactionList extends StatelessWidget {
               itemBuilder: (buildContext, index) {
                 // buildContext argument will be passed autamically by flutter
                 return Card(
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2,
-                            color: Theme.of(context).primaryColorDark,
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 40,
+                      child: Container(
+                        padding: EdgeInsets.all(15),
+                        child: FittedBox(
+                          child: Text(
+                            '${transactions[index].amount.toStringAsFixed(2)} tk',
                           ),
-                        ),
-                        // width: 100,
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          '${transactions[index].amount.toStringAsFixed(2)} tk',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.all(5),
-                            child: Text(
-                              transactions[index].title,
-                              style: Theme.of(context).textTheme.title,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(5),
-                            child: Text(
-                              DateFormat.yMMMEd()
-                                  .add_jm()
-                                  .format(transactions[index].date),
-                              style: TextStyle(
-                                color: Colors.blueGrey,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
+                    title: Text(
+                      transactions[index].title,
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    subtitle: Text(
+                      DateFormat.yMMMEd()
+                          .add_jm()
+                          .format(transactions[index].date),
+                    ),
                   ),
                 );
               },
@@ -94,3 +67,57 @@ class TransactionList extends StatelessWidget {
     );
   }
 }
+
+// return Card(
+//                   child: Row(
+//                     children: <Widget>[
+//                       Container(
+//                         margin: EdgeInsets.symmetric(
+//                           vertical: 10,
+//                           horizontal: 15,
+//                         ),
+//                         decoration: BoxDecoration(
+//                           border: Border.all(
+//                             width: 2,
+//                             color: Theme.of(context).primaryColorDark,
+//                           ),
+//                         ),
+//                         // width: 100,
+//                         padding: EdgeInsets.all(10),
+// child: Text(
+//   '${transactions[index].amount.toStringAsFixed(2)} tk',
+//                           style: TextStyle(
+//                             fontSize: 20,
+//                             fontWeight: FontWeight.bold,
+//                             color: Theme.of(context).primaryColor,
+//                           ),
+//                           textAlign: TextAlign.center,
+//                         ),
+//                       ),
+//                       Column(
+//                         crossAxisAlignment: CrossAxisAlignment.start,
+//                         children: <Widget>[
+//                           Container(
+//                             margin: EdgeInsets.all(5),
+// child: Text(
+//   transactions[index].title,
+//   style: Theme.of(context).textTheme.title,
+// ),
+//                           ),
+//                           Container(
+//                             margin: EdgeInsets.all(5),
+// child: Text(
+//   DateFormat.yMMMEd()
+//       .add_jm()
+//       .format(transactions[index].date),
+//                               style: TextStyle(
+//                                 color: Colors.blueGrey,
+//                                 fontSize: 16,
+//                               ),
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ],
+//                   ),
+//                 );
