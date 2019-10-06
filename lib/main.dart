@@ -14,13 +14,16 @@ class MyApp extends StatelessWidget {
       title: 'Expense Tracker',
       theme: ThemeData(
         primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
+        accentColor: Colors.deepOrange,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
               title: TextStyle(
                 fontFamily: 'OpanSans',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+              ),
+              button: TextStyle(
+                color: Colors.white,
               ),
             ),
         appBarTheme: AppBarTheme(
