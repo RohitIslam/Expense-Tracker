@@ -73,14 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
       date: chosenDate,
     );
 
-    print('newTrans Id: ${newTrans.id}');
     setState(() {
       _userTransactions.add(newTrans);
     });
   }
 
   void _deleteTransaction(String id) {
-    print('deleted Id: $id');
     setState(() {
       _userTransactions.removeWhere((userTrans) => userTrans.id == id);
     });

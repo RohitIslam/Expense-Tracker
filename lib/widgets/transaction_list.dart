@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
+import './transaction_item.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
@@ -39,46 +39,8 @@ class TransactionList extends StatelessWidget {
           : ListView.builder(
               itemBuilder: (buildContext, index) {
                 // buildContext argument will be passed autamically by flutter
-                return Card(
-                  elevation: 5,
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 40,
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        child: FittedBox(
-                          child: Text(
-                            '${transactions[index].amount.toStringAsFixed(2)} tk',
-                          ),
-                        ),
-                      ),
-                    ),
-                    title: Text(
-                      transactions[index].title,
-                      style: Theme.of(context).textTheme.title,
-                    ),
-                    subtitle: Text(
-                      DateFormat.yMMMEd()
-                          .add_jm()
-                          .format(transactions[index].date),
-                    ),
-                    trailing: MediaQuery.of(context).size.width > 460
-                        ? FlatButton.icon(
-                            icon: const Icon(Icons.delete),
-                            label: const Text('Delete'),
-                            textColor: Theme.of(context).errorColor,
-                            onPressed: () =>
-                                deleteTrans(transactions[index].id),
-                          )
-                        : IconButton(
-                            icon: const Icon(Icons.delete),
-                            color: Theme.of(context).errorColor,
-                            onPressed: () =>
-                                deleteTrans(transactions[index].id),
-                          ),
-                  ),
-                );
+                return TransactionItem(
+                    transaction: transactions[index], deleteTrans: deleteTrans);
               },
               itemCount: transactions
                   .length, // 'itemBuilder' function will run 'itemCount' times
@@ -86,57 +48,3 @@ class TransactionList extends StatelessWidget {
     );
   }
 }
-
-// return Card(
-//                   child: Row(
-//                     children: <Widget>[
-//                       Container(
-//                         margin: EdgeInsets.symmetric(
-//                           vertical: 10,
-//                           horizontal: 15,
-//                         ),
-//                         decoration: BoxDecoration(
-//                           border: Border.all(
-//                             width: 2,
-//                             color: Theme.of(context).primaryColorDark,
-//                           ),
-//                         ),
-//                         // width: 100,
-//                         padding: EdgeInsets.all(10),
-// child: Text(
-//   '${transactions[index].amount.toStringAsFixed(2)} tk',
-//                           style: TextStyle(
-//                             fontSize: 20,
-//                             fontWeight: FontWeight.bold,
-//                             color: Theme.of(context).primaryColor,
-//                           ),
-//                           textAlign: TextAlign.center,
-//                         ),
-//                       ),
-//                       Column(
-//                         crossAxisAlignment: CrossAxisAlignment.start,
-//                         children: <Widget>[
-//                           Container(
-//                             margin: EdgeInsets.all(5),
-// child: Text(
-//   transactions[index].title,
-//   style: Theme.of(context).textTheme.title,
-// ),
-//                           ),
-//                           Container(
-//                             margin: EdgeInsets.all(5),
-// child: Text(
-//   DateFormat.yMMMEd()
-//       .add_jm()
-//       .format(transactions[index].date),
-//                               style: TextStyle(
-//                                 color: Colors.blueGrey,
-//                                 fontSize: 16,
-//                               ),
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-//                 );
